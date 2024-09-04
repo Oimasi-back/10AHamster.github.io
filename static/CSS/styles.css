@@ -58,3 +58,19 @@ button:disabled {
 button:hover:not(:disabled) {
     background-color: #1565c0;
 }
+@keyframes insufficientFunds {
+    0% {
+        background-color: #1e88e5; /* Начальный цвет */
+    }
+    50% {
+        background-color: #ff0000; /* Красный цвет */
+    }
+    100% {
+        background-color: #1e88e5; /* Возврат к синему цвету */
+    }
+}
+
+.insufficient-funds {
+    animation: insufficientFunds 1.5s ease;
+}
+
