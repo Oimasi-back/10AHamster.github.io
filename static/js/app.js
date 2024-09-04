@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastClickTime = 0;
     let clickCount = 0;
     const maxClicksPerSecond = 15;
+    let clickDisabled = false;
+    let disableClicksTimer = null;
 
     const tokenCountEl = document.getElementById('token-count');
     const autoclickerCostEl = document.getElementById('autoclicker-cost');
@@ -14,6 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const buyAutoclickerBtn = document.getElementById('buy-autoclicker');
     const buyPowerBtn = document.getElementById('buy-power');
     const clickerImage = document.getElementById('clicker-image');
+    const warningMessageEl = document.createElement('div');
+
+    warningMessageEl.id = 'warning-message';
+    warningMessageEl.style.display = 'none';
+    warningMessageEl.style.position = 'fixed';
+    warningMessageEl.style.top = '50%';
+    warningMessageEl.style.left = '50%';
+    warningMessageEl.style.transform = 'translate(-50%, -50%)';
+    warningMessageEl.style.backgroundColor = 'rgba(255, 0, 0, 0.8)';
+    warningMessageEl.style.color = '#fff';
+    warningMessageEl.style.padding = '20px';
+    warningMessageEl.style.borderRadius = '10px';
+    warningMessageEl.style.fontSize = '1.5em';
+    warningMessageEl.style.zIndex = '1000';
+    warningMessageEl.style.textAlign = 'center';
+    warningMessageEl.innerText = 'Слишком быстрые клики! Ожидайте...';
+
+    document.body.appendChild(warningMessageEl);
 
     function updateDisplay() {
         tokenCountEl.textContent = tokens;
@@ -45,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleClick() {
+        if (clickDisabled) return;
+
         const now = Date.now();
 
         // Если прошло больше секунды, сбросить счетчик кликов
@@ -57,7 +79,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Если пользователь кликает слишком часто
         if (clickCount > maxClicksPerSecond) {
-            alert("Вы нажимаете слишком быстро, это может быть автокликер.");
+            clickDisabled = true;
+            warningMessageEl.style.display = 'block';
+
+            let countdown = 3;
+            warningMessageEl.innerText = `Слишком быстрые клики! Ожидайте... (${countdown})`;
+
+            disableClicksTimer = setInterval(() => {
+                countdown--;
+                warningMessageEl.innerText = `Слишком быстрые клики! Ожидайте... (${countdown})`;
+
+                if (countdown <= 0) {
+                    clearInterval(disableClicksTimer);
+                    warningMessageEl.style.display = 'none';
+                    clickDisabled = false;
+                }
+            }, 1000);
+
             return;
         }
 
