@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="static/CSS/styles.css">
 </head>
 <body>
-    <!-- Плашка сверху -->
-    <div id="top-banner">
-        ЛИСТНЕНИНГ СКОРО !
-        <br>
-        <span class="small-text">(возможно никогда)</span>
+    <!-- Верхняя плашка с мигающим текстом -->
+    <div id="announcement">
+        <span id="announcement-text">ЛИСТНЕНИНГ СКОРО !</span><br>
+        <span id="maybe-never">(возможно никогда)</span>
     </div>
 
     <div id="app">
@@ -29,11 +28,10 @@
         </div>
     </div>
 
-    <!-- Плашка внизу -->
-    <div id="bottom-banner">
-        © Умственная собственность Oimasi, копированию не подлежит!
-        <br>
-        <span class="smaller-text">(так как это само по себе копия)</span>
+    <!-- Нижняя плашка с товарным знаком -->
+    <div id="footer">
+        <span>&copy; Умственная собственность Oimasi, копированию не подлежит!</span><br>
+        <span id="small-copy">(так как это само по себе копия)</span>
     </div>
 
     <script src="static/js/app.js"></script>
