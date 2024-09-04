@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             powerCost = Math.round(powerCost * 1.5);
             updateDisplay();
             saveProgress();
+            tg.sendData(JSON.stringify({ tokens, clickPower, autoclickerCost, powerCost, autoclicksPerSecond }));
         }
     });
 
@@ -73,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 1000);
 
-    tg.sendData(JSON.stringify({ tokens, clickPower, autoclickerCost, powerCost, autoclicksPerSecond }));
+    
 
     loadProgress();
 });
