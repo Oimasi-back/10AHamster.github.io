@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoclickerCost = 50;
     let powerCost = 100;
     let autoclicksPerSecond = 0;
+    let tg = window.Telegram.WebApp;
 
     const tokenCountEl = document.getElementById('token-count');
     const autoclickerCostEl = document.getElementById('autoclicker-cost');
@@ -71,6 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
             saveProgress();
         }
     }, 1000);
+
+    tg.sendData(JSON.stringify({ tokens, clickPower, autoclickerCost, powerCost, autoclicksPerSecond }));
 
     loadProgress();
 });
