@@ -73,4 +73,44 @@ button:hover:not(:disabled) {
 .insufficient-funds {
     animation: insufficientFunds 1.5s ease;
 }
+/* Плашка сверху */
+#top-banner {
+    background-color: #000;
+    color: #ff0000;
+    font-size: 2em;
+    text-align: center;
+    padding: 20px;
+    animation: blink 1s infinite;
+}
+
+#top-banner .small-text {
+    font-size: 0.5em;
+    color: #ffffff;
+}
+
+/* Мигающая анимация */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Плашка внизу */
+#bottom-banner {
+    background-color: #000;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 1em;
+}
+
+#bottom-banner .smaller-text {
+    font-size: 0.8em;
+}
 
